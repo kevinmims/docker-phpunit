@@ -6,5 +6,5 @@ if (Get-Command "docker" -errorAction SilentlyContinue)
 }
 else
 {
-    echo "Docker not installed, the 'docker' command is required to run this script."
+    Write-Output "Docker not installed, the 'docker' command is required to run this script."
 }
