@@ -5,23 +5,38 @@
 -----
 
 ## To use
-1. `git clone https://github.com/kevinmims/docker-phpunit.git`
-2. `docker build . -t phpunit` 
-2. add the path to the direcory you put this in (ie C:/Projects/docker-phpunit/) to windows path (hit windows button, type 'environment variables' and add to PATH)
-3. go to a location with a phpunit.xml file and type `dphpunit`
+1. Run PowerShell as Administrator
+2. Go to the folder you want to hold the project then type:
+```
+git clone https://github.com/kevinmims/docker-phpunit.git
+```
+3. The project will be cloned into C:\YOUR_FOLDER_PATH\docker-phpunit.  Type:
+```
+cd docker-phpunit
+
+./install.ps1
+``` 
+4. This will build the docker container for you.  It will also put the path this direcory in your windows environment variables path (ie C:\YOUR-PATH_HERE\docker-phpunit\).
+5. go to a folder that contains a phpunit.xml file and type:
+```
+docker-phpunit
+```
+This will bring up the docker container, run your unit tests, show you your output in the terminal and open a chrome browser window to see your code coverage (if your phpunit.xml is configured correctly)
 
 ----
 
 ## Code coverage
-Be sure the `<filter>` element is included in your phpunit.xml file (an example is below).  It defines what files to determine in the coverage test.
+You can run code coverage a few ways.  If you included the `<filter>` element in your phpunit.xml file (an example is below) it will run when you type `docker-phpunit`.
 
-To run with code coverage on, type
+If you did not include that element, you can still see the code coverage percentages by adding the argument as below
+
 ```
 phpunit --coverage-text
 ```
-Another benefit is to look output the code coverage to a html file and open it in your browser.  You can do this by adding the `<logging>` element to your phpunit.xml.  Then navigate to:
+
+If you include the `<logging>` element in your phpunit.xml file, you will get a html page that shows your code coverage and will allow you to drill down to each file and see which lines are tested and which test verified the line.  The browser page the script opens will be on the following page:
 ```
-CHROME file:///C:/PATH_TO_PROJECT/coverageHtml/coverage.html/index.html
+CHROME file:///C:/PATH_TO_PROJECT/coverage.html/index.html
 ```
 -----
 

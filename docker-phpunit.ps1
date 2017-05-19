@@ -1,7 +1,7 @@
-$path="file:///$PWD/coverageHtml/coverage.html/index.html"
+$path="file:///$PWD/coverage.html/index.html"
 if (Get-Command "docker" -errorAction SilentlyContinue)
 {
-    docker run --rm -v $PWD/:/opt/project -w /opt/project phpunit phpunit $args
+    docker run --rm -v $PWD/:/opt/project -w /opt/project docker-phpunit phpunit $args
     Start-Process Chrome $path
 }
 else

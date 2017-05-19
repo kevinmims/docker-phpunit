@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+    docker-phpunit:
+      build: 
+        context: .
+        dockerfile: ./Dockerfile.phpunit
+      image: docker-phpunit:latest
+      environment:
+        APPLICATION_ENV: testing
