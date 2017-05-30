@@ -4,8 +4,9 @@
 
 -----
 
-## To use
+## To Install
 1. Run PowerShell as Administrator
+
 2. Go to the folder you want to hold the project then type:
 ```
 git clone https://github.com/kevinmims/docker-phpunit.git
@@ -16,50 +17,55 @@ cd docker-phpunit
 
 ./install.ps1
 ``` 
-4. This will build the docker container for you.  It will also put the path this direcory in your windows environment variables path (ie C:\YOUR-PATH_HERE\docker-phpunit\).
-5. go to a folder that contains a phpunit.xml file and type:
+4. This will build the docker container for you.  It will also add the path of this directory to your windows environment variables path (ie C:\YOUR-PATH_HERE\docker-phpunit\).
+
+----- 
+## To Use
+Go to a folder that contains a phpunit.xml file and type:
+
 ```
 docker-phpunit
 ```
-This will bring up the docker container, run your unit tests, show you your output in the terminal and open a chrome browser window to see your code coverage (if your phpunit.xml is configured correctly)
 
-----
+## Arguments
 
-## Code coverage
-You can run code coverage a few ways.  If you included the `<filter>` element in your phpunit.xml file (an example is below) it will run when you type `docker-phpunit`.
-
-If you did not include that element, you can still see the code coverage percentages by adding the argument as below
-
+You can pass as many commands into the container as you choose by adding the `--` prefix to the command, ie
 ```
-phpunit --coverage-text
+docker-phpunit --coverage-text
 ```
 
-If you include the `<logging>` element in your phpunit.xml file, you will get a html page that shows your code coverage and will allow you to drill down to each file and see which lines are tested and which test verified the line.  The browser page the script opens will be on the following page:
+This will add the text output for code coverage to the powershell window (if your phpunit.xml is configured correctly). 
+
+
+You can open a chrome browser window to see your code coverage from the command line by adding the `coverage` argument, ie
+
 ```
-CHROME file:///C:/PATH_TO_PROJECT/coverage.html/index.html
+docker-phpunit coverage
 ```
+
+Order does not matter
+```
+docker-phpunit coverage --coverage-text
+```
+
+> Currently, `coverage` is the only argument supported
+
 -----
-
-## Trouble shooting
-
- Verify xdebug is installed
-```
-docker run -it phpunit bash
-
-php -ini|grep 'xdebug support'
-```
-You should get `xdebug support => enabled`
-
-To see all xdebug properties
-```
-php -ini|grep 'xdebug'
-```
-
----
 
 ## PHPUnit.xml
 
-Be sure your project includes this file.  Here is a sample format:
+> <b>Your project MUST include this file. </b>
+
+1.  For code coverage, include the `<filter>` element
+
+2. Include the `<logging>` element to get a html page that shows your code coverage and allows you to drill down to each file and see which lines are tested and which test verified the line.  Navigate your browser to the following page to view (or include the `coverage` argument as outlined above)
+
+```
+CHROME file:///C:/PATH_TO_PROJECT/coverage.html/index.html
+```
+
+
+Here is a sample `phpunit.xml` file
 ```
 <phpunit bootstrap="bootstrap.php">
     <php>
@@ -87,4 +93,20 @@ Be sure your project includes this file.  Here is a sample format:
 </phpunit>
 ```
 
+-----
+
+## Trouble shooting
+
+ Verify xdebug is installed
+```
+docker run -it phpunit bash
+
+php -ini|grep 'xdebug support'
+```
+You should get `xdebug support => enabled`
+
+To see all xdebug properties
+```
+php -ini|grep 'xdebug'
+```
 
