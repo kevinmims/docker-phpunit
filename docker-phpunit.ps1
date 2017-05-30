@@ -2,10 +2,10 @@
 $args = $args | Select-Object -uniq
 
 # get docker arguments (prefixed by --)
-$dockerArgs = $args|where{$_ -like "--*"}
+$dockerArgs = $args|Where-Object{$_ -like "--*"}
 
 # get other arguments
-$otherArgs = $args | where{$_ -notlike "--*"}
+$otherArgs = $args|Where-Object{$_ -notlike "--*"}
 
 # define constant
 $path="file:///$PWD/coverage.html/index.html"
