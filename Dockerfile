@@ -6,7 +6,7 @@ RUN apt-get update \
  && docker-php-ext-enable xdebug \
  && echo "zend_extention=$(find /usr/local/lib/php/extentions/ -name xdebug.so)" >> /usr/local/etc/php/conf.d/xdebug.ini \
  && echo "xdebug.remote_enable=1" >> /usr/local/etc/php/conf.d/xdebug.ini \
- && echo "xdebug.remote_port=9999" >> /usr/local/etc/php/conf.d/xdebug.ini \
+ && echo "xdebug.remote_port=9998" >> /usr/local/etc/php/conf.d/xdebug.ini \
  && echo "xdebug.remote_autostart=1" >> /usr/local/etc/php/conf.d/xdebug.ini \
  && echo "xdebug.remote_host=10.254.254.254" >> /usr/local/etc/php/conf.d/xdebug.ini \
 
