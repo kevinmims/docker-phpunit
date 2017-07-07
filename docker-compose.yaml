@@ -8,3 +8,4 @@ services:
       image: docker-phpunit:latest
       environment:
         APPLICATION_ENV: testing
+        XDEBUG_CONFIG: remote_host=10.254.254.254
