@@ -20,7 +20,7 @@ if (Get-Command "docker" -errorAction SilentlyContinue)
     ForEach($arg in $otherArgs)
     {
         # look for coverage argument to show code coverage in browser
-        if($arg -eq 'coverage')
+        if($arg -eq 'showCoverage')
         {
             Start-Process Chrome $path
         } 
